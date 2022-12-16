@@ -1,6 +1,6 @@
 const Workflow = require("@saltcorn/data/models/workflow");
 const Form = require("@saltcorn/data/models/form");
-const { Configuration, OpenAIApi } = require("openai");
+const { Configuration, OpenAIApi } = require("./openai/index");
 
 const configuration_workflow = () =>
   new Workflow({
