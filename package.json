@@ -1,0 +1,13 @@
+{
+  "name": "@saltcorn/openai",
+  "version": "0.1.0",
+  "description": "OpenAI API for GPT",
+  "main": "index.js",
+  "dependencies": {
+    "@saltcorn/data": "^0.7.0",
+    "openai": "3.1.0"
+  },
+  "author": "Tom Nielsen",
+  "license": "MIT",
+  "repository": "github:saltcorn/openai"
+}
