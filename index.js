@@ -25,15 +25,16 @@ const configuration_workflow = () =>
 
 const functions = ({ api_key }) => ({
   gpt_generate: {
-    run: async (prompt) => {
+    run: async (prompt, options = {}) => {
       const configuration = new Configuration({
         apiKey: api_key,
       });
       const openai = new OpenAIApi(configuration);
 
       const completion = await openai.createCompletion({
-        model: "text-davinci-002",
-        prompt: "Hello world",
+        model: "text-davinci-003",
+        ...options,
+        prompt,
       });
       return completion;
     },
