@@ -1,6 +1,7 @@
 const Workflow = require("@saltcorn/data/models/workflow");
 const Form = require("@saltcorn/data/models/form");
 const { Configuration, OpenAIApi } = require("./openai/index");
+const fsp = require("fs").promises;
 
 const configuration_workflow = () =>
   new Workflow({
@@ -41,6 +42,17 @@ const functions = ({ api_key }) => ({
     isAsync: true,
     description: "Generate text with GPT",
     arguments: [{ name: "prompt", type: "String" }],
+  },
+  delete_tmp_images: {
+    run: async (images) => {
+      if (Array.isArray(images))
+        for (const img of images) {
+          await fsp.unlink(img.filePath);
+        }
+      else if (images.filePath) await fsp.unlink(images.filePath);
+    },
+    isAsync: true,
+    description: "Delete generated temporary files",
   },
 });
 module.exports = {
